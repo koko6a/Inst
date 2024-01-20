@@ -7,11 +7,16 @@ struct PostGridView: View {
     var body: some View {
         LazyVGrid(columns: items, spacing: 2, content: {
             ForEach(0..<36) { _ in
-                Image("img6")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: size, height: size)
-                    .clipped()
+                NavigationLink {
+                    FeedView()
+                } label: {
+                    Image("img6")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: size, height: size)
+                        .clipped()
+                }
+
             }
         })
     }
