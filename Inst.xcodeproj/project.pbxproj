@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80230D452B6550CD00DC15C9 /* UserStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80230D442B6550CD00DC15C9 /* UserStatView.swift */; };
+		80230D482B65541D00DC15C9 /* ProfileEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80230D472B65541D00DC15C9 /* ProfileEditButton.swift */; };
+		80230D4A2B6583BA00DC15C9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80230D492B6583BA00DC15C9 /* ImagePicker.swift */; };
+		8035E3082B5C44B900E357B9 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8035E3072B5C44B900E357B9 /* ProfileHeaderView.swift */; };
+		80414E142B5BDFA100984A71 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80414E132B5BDFA100984A71 /* NotificationCell.swift */; };
 		805A92332B5B0B9E0088D937 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805A92322B5B0B9E0088D937 /* UIApplication+Extension.swift */; };
 		8073120D2B5AEFB5001B4DA0 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8073120C2B5AEFB5001B4DA0 /* UserListView.swift */; };
 		8073120F2B5AEFEB001B4DA0 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8073120E2B5AEFEB001B4DA0 /* UserCell.swift */; };
@@ -26,6 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		80230D442B6550CD00DC15C9 /* UserStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatView.swift; sourceTree = "<group>"; };
+		80230D472B65541D00DC15C9 /* ProfileEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditButton.swift; sourceTree = "<group>"; };
+		80230D492B6583BA00DC15C9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		8035E3072B5C44B900E357B9 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		80414E132B5BDFA100984A71 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		805A92322B5B0B9E0088D937 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		8073120C2B5AEFB5001B4DA0 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		8073120E2B5AEFEB001B4DA0 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -56,6 +66,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80230D462B6553FF00DC15C9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8035E3072B5C44B900E357B9 /* ProfileHeaderView.swift */,
+				80230D442B6550CD00DC15C9 /* UserStatView.swift */,
+				80230D472B65541D00DC15C9 /* ProfileEditButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		805A92312B5B0B8B0088D937 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +134,7 @@
 		808C97D22B5724060031A299 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				80230D492B6583BA00DC15C9 /* ImagePicker.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -173,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				808C97ED2B5726DE0031A299 /* ProfileView.swift */,
+				80230D462B6553FF00DC15C9 /* Views */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -206,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				808C97EB2B5726B60031A299 /* NotificationsView.swift */,
+				80414E132B5BDFA100984A71 /* NotificationCell.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -332,12 +355,17 @@
 				808C97D82B5724920031A299 /* ContentView.swift in Sources */,
 				808C97C42B57229C0031A299 /* InstApp.swift in Sources */,
 				805A92332B5B0B9E0088D937 /* UIApplication+Extension.swift in Sources */,
+				80230D4A2B6583BA00DC15C9 /* ImagePicker.swift in Sources */,
+				80230D482B65541D00DC15C9 /* ProfileEditButton.swift in Sources */,
+				8035E3082B5C44B900E357B9 /* ProfileHeaderView.swift in Sources */,
 				808C97E62B5726530031A299 /* MainTabView.swift in Sources */,
+				80230D452B6550CD00DC15C9 /* UserStatView.swift in Sources */,
 				808C97F02B5727040031A299 /* UploadPostView.swift in Sources */,
 				8073120D2B5AEFB5001B4DA0 /* UserListView.swift in Sources */,
 				808C97EE2B5726DE0031A299 /* ProfileView.swift in Sources */,
 				808F398B2B585D2800229E76 /* SearchBar.swift in Sources */,
 				808C97EC2B5726B60031A299 /* NotificationsView.swift in Sources */,
+				80414E142B5BDFA100984A71 /* NotificationCell.swift in Sources */,
 				808F39892B5849B200229E76 /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
