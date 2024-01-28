@@ -1,18 +1,15 @@
-//
-//  InstApp.swift
-//  Inst
-//
-//  Created by Кащенко on 16.01.24.
-//
-
 import SwiftUI
+import Firebase
 
 @main
 struct InstApp: App {
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            //ContentView()
-            LoginView()
+            ContentView().environmentObject(AuthViewModel())
         }
     }
 }

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.dismiss) var dismiss
     @State private var email = ""
     @State private var password = ""
@@ -67,7 +68,7 @@ struct RegistrationView: View {
                 }.padding(.horizontal, 24)
             
                 Button {
-                    
+                    viewModel.register()
                 } label: {
                     Text("Sign Up")
                         .font(.headline)
@@ -94,8 +95,4 @@ struct RegistrationView: View {
             }
         }
     }
-}
-
-#Preview {
-    RegistrationView()
 }

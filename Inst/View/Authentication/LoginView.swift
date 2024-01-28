@@ -3,6 +3,11 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
+    
+    var isEnabledLogin: Bool {
+        return !email.isEmpty && !password.isEmpty
+    }
     
     var body: some View {
         NavigationStack {
@@ -47,15 +52,17 @@ struct LoginView: View {
                     }
                 
                     Button {
-                        
+                        viewModel.login()
                     } label: {
                         Text("Sign In")
                             .font(.headline)
                             .frame(maxWidth: .infinity, minHeight: 50)
                             .foregroundStyle(.white)
-                            .background(Color("violetPrimary"))
+                            .background(isEnabledLogin ? Color("violetPrimary") : .secondary)
                             .clipShape(Capsule())
-                    }.padding(24)
+                    }
+                    .padding(24)
+                    .disabled(!isEnabledLogin)
                     
                     Spacer()
                     Spacer()
@@ -75,8 +82,4 @@ struct LoginView: View {
             }
         }
     }
-}
-
-#Preview {
-    LoginView()
 }
