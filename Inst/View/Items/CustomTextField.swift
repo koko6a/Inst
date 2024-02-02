@@ -20,6 +20,8 @@ struct CustomTextField: View {
                     .placeholder(when: text.isEmpty) {
                         placeholder.foregroundStyle(.white.opacity(0.8))
                     }
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
             }
             .padding(.leading, 8)
             .frame(minHeight: 44)

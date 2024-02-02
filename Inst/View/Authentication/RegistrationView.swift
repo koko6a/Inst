@@ -5,11 +5,16 @@ struct RegistrationView: View {
     @Environment(\.dismiss) var dismiss
     @State private var email = ""
     @State private var password = ""
-    @State private var firstName = ""
-    @State private var lastName = ""
+    @State private var fullName = ""
+    @State private var nickname = ""
     @State private var selectedImage: UIImage?
     @State private var postImage: Image?
     @State private var imagePickerPresented = false
+    
+    private var isEnabledRegister: Bool {
+        return email.count > 3 && password.count > 6 && fullName.count > 2 &&
+        nickname.count > 2 && postImage != nil
+    }
     
     var body: some View {
         ZStack {
@@ -53,13 +58,13 @@ struct RegistrationView: View {
                     )
                     
                     CustomTextField(
-                        text: $firstName, placeholder: Text("First Name"),
-                        imageName: "envelope"
+                        text: $fullName, placeholder: Text("Full Name"),
+                        imageName: "person"
                     )
                     
                     CustomTextField(
-                        text: $lastName, placeholder: Text("Last Name"),
-                        imageName: "envelope"
+                        text: $nickname, placeholder: Text("Nickname"),
+                        imageName: "person"
                     )
                     
                     CustomSecureTextField(
@@ -68,15 +73,20 @@ struct RegistrationView: View {
                 }.padding(.horizontal, 24)
             
                 Button {
-                    viewModel.register()
+                    viewModel.register(
+                        with: email, and: password, image: selectedImage!,
+                        fullName: fullName, nickname: nickname
+                    )
                 } label: {
                     Text("Sign Up")
                         .font(.headline)
                         .frame(maxWidth: .infinity, minHeight: 50)
                         .foregroundStyle(.white)
-                        .background(Color("violetPrimary"))
+                        .background(isEnabledRegister ? Color("violetPrimary") : .secondary)
                         .clipShape(Capsule())
-                }.padding(24)
+                }
+                .disabled(!isEnabledRegister)
+                .padding(24)
                 
                 Spacer()
                 Spacer()

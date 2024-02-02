@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MainTabView: View {
+    let user: User
+    
     var body: some View {
         NavigationStack {
             TabView {
@@ -24,17 +26,22 @@ struct MainTabView: View {
                         Image(systemName: "heart")
                     }
                 
-                ProfileView()
+                ProfileView(user: user)
                     .tabItem {
                         Image(systemName: "person")
                     }
             }
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        AuthViewModel.shared.logOut()
+                    } label: {
+                        Text("Logout")
+                    }
+                }
+            }
         }
     }
-}
-
-#Preview {
-    MainTabView()
 }

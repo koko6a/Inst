@@ -1,11 +1,15 @@
 import SwiftUI
+import Kingfisher
 
 struct ProfileHeaderView: View {
+    @ObservedObject var viewModel: ProfileViewModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image("koko6a")
+                KFImage(URL(string: viewModel.user.avatar))
                     .resizable()
+                    .placeholder({ ProgressView() })
                     .scaledToFill()
                     .frame(width: 80, height: 80)
                     .clipShape(.circle)
@@ -21,7 +25,7 @@ struct ProfileHeaderView: View {
                 
             }
             
-            Text("Ruslan Koko6a")
+            Text(viewModel.user.fullName)
                 .font(.system(size: 15, weight: .semibold))
                 .padding([.leading, .top])
             
@@ -30,13 +34,9 @@ struct ProfileHeaderView: View {
                 .padding(.leading)
                 .padding(.top, 2)
             
-            ProfileEditButton()
+            ProfileEditButton(viewModel: viewModel)
                 .padding(.top, 16)
                 .padding(.horizontal, 24)
         }
     }
-}
-
-#Preview {
-    ProfileHeaderView()
 }

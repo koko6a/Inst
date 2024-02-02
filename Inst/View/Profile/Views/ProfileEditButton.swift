@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct ProfileEditButton: View {
-    var isCurrentUser = false
-    var isFollowed = false
+    @ObservedObject var viewModel: ProfileViewModel
+    var isFollow = false
     
     var body: some View {
-        if isCurrentUser {
+        if viewModel.user.isCurrent {
             Button {
                 
             } label: {
@@ -20,16 +20,16 @@ struct ProfileEditButton: View {
         } else {
             HStack {
                 Button {
-                    
+                    isFollow ? viewModel.unFollow() : viewModel.follow()
                 } label: {
-                    Text(isFollowed ? "Following" : "Follow")
+                    Text(isFollow ? "Following" : "Follow")
                         .font(.system(size: 14, weight: .semibold))
                         .frame(maxWidth: .infinity, minHeight: 32)
-                        .foregroundStyle(isFollowed ? .black : .white)
-                        .background(isFollowed ? .clear : .blue)
+                        .foregroundStyle(isFollow ? .black : .white)
+                        .background(isFollow ? .clear : .blue)
                         .overlay {
                             RoundedRectangle(cornerRadius: 3)
-                                .stroke(Color.gray, lineWidth: isFollowed ? 1 : 0)
+                                .stroke(Color.gray, lineWidth: isFollow ? 1 : 0)
                         }
                 }.clipShape(.rect(cornerRadius: 4))
                 
@@ -47,8 +47,4 @@ struct ProfileEditButton: View {
             }
         }
     }
-}
-
-#Preview {
-    ProfileEditButton()
 }
