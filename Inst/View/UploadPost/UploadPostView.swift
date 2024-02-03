@@ -6,6 +6,8 @@ struct UploadPostView: View {
     @State var visibleImage = Image("addPhoto")
     @State private var captionText = ""
     @State private var imagePickerPresented = false
+    @Binding var tabIndex: Int
+    @ObservedObject var viewModel = UploadPostViewModel()
     
     private var isDisabled: Bool {
         postImage == nil
@@ -54,22 +56,45 @@ struct UploadPostView: View {
                                     
             }.padding()
             
-            Button {
+            HStack {
+                Button {
+                    guard let selectedImage else { return }
+                    viewModel.uploadPost(caption: captionText,
+                                         image: selectedImage) { error in
+                        clearPost(showFeed: true)
+                    }
+                } label: {
+                    Text("Share")
+                        .font(.system(size: 16, weight: .semibold))
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .background(isDisabled ? .gray : .blue)
+                        .foregroundStyle(.white)
+                        .clipShape(.rect(cornerRadius: 5))
+                        .disabled(isDisabled)
+                }
                 
-            } label: {
-                Text("Share")
-                    .font(.system(size: 16, weight: .semibold))
-                    .frame(maxWidth: .infinity, minHeight: 50)
-                    .background(isDisabled ? .gray : .blue)
-                    .foregroundStyle(.white)
-                    .clipShape(.rect(cornerRadius: 5))
-                    .padding(.horizontal, 24)
-                    .disabled(isDisabled)
-            }
+                Button {
+                    clearPost(showFeed: false)
+                } label: {
+                    Text("Cancel")
+                        .font(.system(size: 16, weight: .semibold))
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .background(isDisabled ? .gray : .red)
+                        .foregroundStyle(.white)
+                        .clipShape(.rect(cornerRadius: 5))
+                        .disabled(isDisabled)
+                }
+            }.padding(.horizontal, 16)
         }
     }
-}
-
-#Preview {
-    UploadPostView()
+    
+    private func clearPost(showFeed: Bool) {
+        captionText = ""
+        postImage = nil
+        selectedImage = nil
+        visibleImage = Image("addPhoto")
+        if showFeed {
+            tabIndex = 0
+        }
+    }
 }

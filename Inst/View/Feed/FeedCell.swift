@@ -1,23 +1,28 @@
 import SwiftUI
+import Kingfisher
 
 struct FeedCell: View {
+    let post: Post
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image("koko6a")
+                KFImage(URL(string: post.avatarUrl))
                     .resizable()
+                    .placeholder({ ProgressView() })
                     .scaledToFill()
                     .frame(width: 36, height: 36)
                     .clipShape(.rect(cornerRadius: 18))
                     .clipped()
                 
-                Text("joker")
+                Text(post.username)
                     .font(.system(size: 14, weight: .semibold))
             }
             .padding([.leading, .bottom], 8)
             
-            Image("img6")
+            KFImage(URL(string: post.imageUrl))
                 .resizable()
+                .placeholder({ ProgressView() })
                 //.scaledToFill()
                 .frame(maxHeight: 440)
             
@@ -57,15 +62,15 @@ struct FeedCell: View {
             }
             .padding(.leading, 4)
             
-            Text("3 likes")
+            Text("\(post.likes) likes")
                 .font(.system(size: 14, weight: .semibold))
                 .padding(.leading, 8)
                 .padding(.bottom, 2)
             
             HStack {
-                Text("batman")
+                Text(post.username)
                     .font(.system(size: 14, weight: .semibold)) +
-                Text(" All men have limits. They learn what they are and learn not to exceed them. I ignore mine.")
+                Text(" " + post.caption)
                     .font(.system(size: 15))
             }
             .padding(.horizontal, 8)
@@ -77,8 +82,4 @@ struct FeedCell: View {
                 .padding(.top, 2)
         }
     }
-}
-
-#Preview {
-    FeedCell()
 }

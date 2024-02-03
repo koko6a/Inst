@@ -2,7 +2,9 @@ import SwiftUI
 
 struct ProfileEditButton: View {
     @ObservedObject var viewModel: ProfileViewModel
-    var isFollow = false
+    var isFollow: Bool {
+        return viewModel.user.isFollowed ?? false
+    }
     
     var body: some View {
         if viewModel.user.isCurrent {

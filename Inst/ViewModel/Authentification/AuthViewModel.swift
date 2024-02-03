@@ -33,7 +33,7 @@ extension AuthViewModel: ObservableObject {
         with email: String, and password: String, image: UIImage,
         fullName: String, nickname: String
     ) {
-        FirestoreImageUploader.uploadImage(image: image) { url in
+        FirestoreImageUploader.uploadImage(image: image, type: .profile) { url in
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
                 if let error {
                     print(error.localizedDescription)

@@ -19,8 +19,6 @@ final class SearchViewModel: ObservableObject {
             self.users = documents.compactMap({ query -> User? in
                 return try? query.data(as: User.self)
             })
-            
-            print(self.users)
         }
     }
     
