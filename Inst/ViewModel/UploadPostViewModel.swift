@@ -6,13 +6,14 @@ final class UploadPostViewModel: ObservableObject {
         guard let user = AuthViewModel.shared.currentUser else { return }
         
         FirestoreImageUploader.uploadImage(image: image, type: .post) { url in
+            let id = NSUUID().uuidString.lowercased()
             let post = Post(
-                id: UUID().uuidString, ownerId: user.id, username: user.nickname,
+                id: id, ownerId: user.id, username: user.nickname,
                 avatarUrl: user.avatar, caption: caption,
-                timeStamp: Timestamp(date: Date()), likes: 0, imageUrl: url
+                timeStamp: Timestamp(date: Date()), imageUrl: url, likes: 0
             )
             let data = post.data
-            COLLECTION_POSTS.addDocument(data: data, completion: completion)
+            COLLECTION_POSTS.document(id).setData(data, completion: completion)
         }
     }
 }

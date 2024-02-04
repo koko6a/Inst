@@ -8,8 +8,9 @@ struct Post: Decodable, Identifiable {
     let avatarUrl: String
     let caption: String
     let timeStamp: Timestamp
-    let likes: Int
     let imageUrl: String
+    var likes: Int
+    var didLike: Bool? = false
 }
 
 extension Post {
