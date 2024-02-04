@@ -43,8 +43,8 @@ struct FeedCell: View {
                         .padding(4)
                 }
                 
-                Button {
-                    
+                NavigationLink {
+                    CommentsView(post: viewModel.post)
                 } label: {
                     Image(systemName: "bubble.right")
                         .resizable()
