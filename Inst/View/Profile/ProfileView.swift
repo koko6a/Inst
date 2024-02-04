@@ -1,6 +1,6 @@
 import SwiftUI
 
- struct ProfileView: View {
+struct ProfileView: View {
     let user: User
     @ObservedObject var viewModel: ProfileViewModel
     
@@ -14,7 +14,7 @@ import SwiftUI
             VStack(spacing: 32) {
                 ProfileHeaderView(viewModel: viewModel)
                 
-                PostGridView()
+                PostGridView(postsType: .profile(user.id))
             }.padding(.top)
         }
     }
