@@ -9,8 +9,7 @@ struct FeedView: View {
                 ForEach(viewModel.posts) { post in
                     FeedCell(viewModel: FeedCellViewModel(post: post))
                 }
-            }
-            .padding(.top)
+            }.padding(.vertical)
         }
     }
 }

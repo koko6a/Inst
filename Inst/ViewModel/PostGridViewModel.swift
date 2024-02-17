@@ -26,7 +26,8 @@ final class PostGridViewModel: ObservableObject {
 
 private extension PostGridViewModel {
     func fetchExplorePosts() {
-        COLLECTION_POSTS.getDocuments { snapshot, error in
+        COLLECTION_POSTS.order(by: "likes", descending: true)
+            .getDocuments { snapshot, error in
             if let error {
                 print(error.localizedDescription)
                 return
@@ -52,7 +53,7 @@ private extension PostGridViewModel {
                 
                 self.posts = documents.compactMap({ doc -> Post? in
                     return try? doc.data(as: Post.self)
-                })
+                }).sorted(by: { $0.timeStamp.dateValue() > $1.timeStamp.dateValue() })
             }
     }
 }

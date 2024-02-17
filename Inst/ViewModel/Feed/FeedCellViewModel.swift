@@ -16,6 +16,15 @@ final class FeedCellViewModel: ObservableObject {
         return "\(post.likes) " + string
     }
     
+    var timeStampString: String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
+        formatter.maximumUnitCount = 1
+        formatter.unitsStyle = .abbreviated
+        let date = post.timeStamp.dateValue()
+        return formatter.string(from: date, to: Date()) ?? ""
+    }
+    
     private var userId: String {
         AuthViewModel.shared.userSession?.uid ?? ""
     }
@@ -36,6 +45,10 @@ final class FeedCellViewModel: ObservableObject {
                             .updateData([
                                 PropertyField.likes.rawValue : self.post.likes + 1
                             ])
+                        
+                        NotificationsViewModel.uploadNotifications(
+                            to: self.post.ownerId, type: .like, post: self.post
+                        )
                         
                         self.post.didLike = true
                         self.post.likes += 1

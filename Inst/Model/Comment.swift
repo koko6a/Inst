@@ -30,3 +30,14 @@ extension Comment {
         ]
     }
 }
+
+extension Comment {
+    var timeStampString: String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
+        formatter.maximumUnitCount = 1
+        formatter.unitsStyle = .abbreviated
+        let date = timestamp.dateValue()
+        return formatter.string(from: date, to: Date()) ?? ""
+    }
+}

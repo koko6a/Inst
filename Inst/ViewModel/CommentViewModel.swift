@@ -38,13 +38,17 @@ extension CommentViewModel {
                     print(error)
                     return
                 }
+                
+                NotificationsViewModel.uploadNotifications(
+                    to: self.post.ownerId, type: .comment, post: self.post
+                )
             }
     }
     
     func fetchComments() {
         let collection = COLLECTION_POSTS.document(post.id)
             .collection(Collection.postComments.rawValue)
-            .order(by: "timestamp", descending: true)
+            .order(by: "timestamp", descending: false)
         
         collection.addSnapshotListener { snapshot, _ in
             guard let addedDocks = snapshot?.documentChanges

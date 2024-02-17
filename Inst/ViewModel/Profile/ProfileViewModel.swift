@@ -10,6 +10,7 @@ final class ProfileViewModel: ObservableObject {
     
     func follow() {
         UserService.follow(id: user.id) { error in
+            NotificationsViewModel.uploadNotifications(to: self.user.id, type: .follow)
             self.user.isFollowed = true
         }
     }
